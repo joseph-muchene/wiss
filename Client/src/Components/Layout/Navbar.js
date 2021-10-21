@@ -9,7 +9,7 @@ const Navbar = ({ isAuthenticated, signout, user }) => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-info rounded">
         <Link className="navbar-brand logo" to="/">
-          Wiss
+          Wiss Blog
         </Link>
         <button
           className="navbar-toggler"

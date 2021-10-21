@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 import Moment from "react-moment";
 import P from "../static/profile-pic.png";
 import { read, removeProfile } from "../Action/Profile";
@@ -9,8 +10,6 @@ import { TruncateBody } from "../helpers/Truncate";
 import { isAuthenticated } from "../Action/Auth";
 import { useEffect } from "react";
 import { postByUser } from "../Action/Post";
-import { useState } from "react";
-
 const Profile = ({
   read,
   match,
@@ -93,7 +92,7 @@ const Profile = ({
                   removeUser();
                 }}
               >
-                DELETE PROFILE
+                DELETE ACCOUNT
               </button>
             </div>
           )}{" "}
@@ -124,7 +123,9 @@ const Profile = ({
                 <div className="post__content">
                   <div className="container">
                     <h4 className="my-4">{post.title}</h4>
-                    <p className="lead">{TruncateBody(post.body, 30)}</p>
+                    <p className="lead">
+                      {ReactHtmlParser(TruncateBody(post.body, 30))}
+                    </p>
                     <button className="btn btn-link ">
                       <a href={`/read/more/${post._id}`}>Read more</a>
                     </button>

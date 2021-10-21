@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { connect } from "react-redux";
 import { updatePost, getPost } from "../Action/Post";
-const Add__Post = ({ updatePost, match, getPost, post, error, loading }) => {
+const Add__Post = ({ updatePost, match, getPost, post, error }) => {
   ////implement loading here
   useEffect(() => {
     getPost(match.params.id);
@@ -12,6 +14,7 @@ const Add__Post = ({ updatePost, match, getPost, post, error, loading }) => {
   const [formData, setFormData] = useState({
     title: post.title && post.title,
     photo: "",
+    success: false,
     body: post.body && post.body,
   });
   const { title, success, body, photo } = formData;
@@ -36,7 +39,9 @@ const Add__Post = ({ updatePost, match, getPost, post, error, loading }) => {
       })
       .catch((err) => console.log(err.message));
   };
-
+  if (success) {
+    return <Redirect to="/" />;
+  }
   const showErrors = () => (
     <div className="alert alert-danger mt-4  " role="alert">
       {error}
@@ -84,7 +89,7 @@ const Add__Post = ({ updatePost, match, getPost, post, error, loading }) => {
             className="form-control border-info outline-none border-left-0 border-right-0 border-top-0"
           />
         </div>
-        <textarea
+        {/* <textarea
           type="text"
           name="body"
           value={body}
@@ -92,7 +97,20 @@ const Add__Post = ({ updatePost, match, getPost, post, error, loading }) => {
           className="form-control mb-4"
           cols="30"
           rows="10"
-        ></textarea>
+        ></textarea> */}
+        <div className="container mb-4">
+          <CKEditor
+            name="body"
+            data={body}
+            editor={ClassicEditor}
+            onChange={(e, editor) => {
+              setFormData({
+                ...formData,
+                body: editor.getData(),
+              });
+            }}
+          ></CKEditor>
+        </div>
         <input type="submit" className="btn btn-success btn-lg" />
 
         <p className="mt-4">
@@ -112,7 +130,6 @@ Add__Post.propTypes = {
 const mapStateToProps = (state) => ({
   error: state.Post.error,
   post: state.Post.post,
-  loading: state.Post.loading,
 });
 
 export default connect(mapStateToProps, { updatePost, getPost })(Add__Post);

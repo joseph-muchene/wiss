@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getPost, updateLikes, removelike, removePost } from "../Action/Post";
 import { useEffect } from "react";
+import ReactHtmlParser from "react-html-parser";
+
 import Like from "../static/thumbs-up.svg";
 import Unlike from "../static/thumbs-down.svg";
 import Moment from "react-moment";
@@ -89,7 +91,7 @@ const Postcomponent = ({
           {post.likes && post.likes.length}
         </span>
         <div class="container my-4">
-          <p class="lead text-break">{post.body}</p>
+          <p class="lead text-break">{ReactHtmlParser(post.body)}</p>
           <div class="my-5">
             <p>
               posted by

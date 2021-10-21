@@ -3,7 +3,7 @@ import { TruncateBody } from "../helpers/Truncate";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
+import ReactHtmlParser from "react-html-parser";
 const PostCard = ({ posts: { posts }, isAuthenticated }) => {
   return (
     <div>
@@ -32,7 +32,7 @@ const PostCard = ({ posts: { posts }, isAuthenticated }) => {
                         <h4>{post.title}</h4>
                       </div>
                       <p className="text-break text">
-                        {TruncateBody(post.body, 200)}
+                        {ReactHtmlParser(TruncateBody(post.body, 200))}
                       </p>
                     </div>
 

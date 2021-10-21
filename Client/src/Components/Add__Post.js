@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { createpost } from "../Action/Post";
 const Add__Post = ({ createpost, error, loading }) => {
   const [formData, setFormData] = useState({
@@ -43,6 +46,9 @@ const Add__Post = ({ createpost, error, loading }) => {
     </div>
   );
 
+  if (success) {
+    return <Redirect to="/" />;
+  }
   return (
     <div className="container">
       {error && showErrors()}
@@ -77,7 +83,7 @@ const Add__Post = ({ createpost, error, loading }) => {
             className="form-control border-info outline-none border-left-0 border-right-0 border-top-0"
           />
         </div>
-        <textarea
+        {/* <textarea
           type="text"
           name="body"
           value={body}
@@ -85,7 +91,23 @@ const Add__Post = ({ createpost, error, loading }) => {
           className="form-control mb-4"
           cols="30"
           rows="10"
-        ></textarea>
+        ></textarea> */}
+
+        <div>
+          <div className="container mb-4">
+            <CKEditor
+              name="body"
+              data={body}
+              editor={ClassicEditor}
+              onChange={(e, editor) => {
+                setFormData({
+                  ...formData,
+                  body: editor.getData(),
+                });
+              }}
+            ></CKEditor>
+          </div>
+        </div>
         <input type="submit" className="btn btn-success btn-lg" />
 
         <p className="mt-4">
