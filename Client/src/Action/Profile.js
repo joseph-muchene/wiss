@@ -16,7 +16,7 @@ export const read = (userId) => async (dispatch) => {
   };
   try {
     const res = await axios.get(
-      `http://localhost:8000/api/users/read/${userId}`,
+      `/api/users/read/${userId}`,
       config
     );
     dispatch({
@@ -34,7 +34,7 @@ export const read = (userId) => async (dispatch) => {
 export const removeProfile = () => async (dispatch) => {
   try {
     const res = await axios.delete(
-      `http://localhost:8000/api/user/delete/${data.user._id}`
+      `/api/user/delete/${data.user._id}`
     );
     dispatch({
       type: CLEAR_PROFILE,
@@ -54,7 +54,7 @@ export const updateUser = (formData) => async (dispatch) => {
     };
     const body = formData;
     const res = await axios.put(
-      `http://localhost:8000/api/user/update/${data.user._id}`,
+      `/api/user/update/${data.user._id}`,
       body,
       config
     );

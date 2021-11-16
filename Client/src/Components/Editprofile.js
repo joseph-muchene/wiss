@@ -54,7 +54,7 @@ const Editprofile = ({ read, profile, error, match, updateUser, loading }) => {
           <label for="">Profile photo</label>
           <div className="form-group">
             <img
-              src={`http://localhost:8000/api/user/photo/${
+              src={`/api/user/photo/${
                 data.user && data.user._id
               }`}
               alt=""

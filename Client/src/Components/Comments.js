@@ -63,7 +63,7 @@ const Comments = ({
                     <div>
                       <div className="mr-4">
                         <img
-                          src={`http://localhost:8000/api/user/photo/${
+                          src={`/api/user/photo/${
                             c && c.user
                           }`}
                           alt=""

@@ -48,7 +48,7 @@ const Profile = ({
                 <img
                   className="img-fluid"
                   alt=""
-                  src={`http://localhost:8000/api/user/photo/${match.params.id}`}
+                  src={`/api/user/photo/${match.params.id}`}
                 />
               ) : (
                 <img className="img-fluid img__card" src={P} alt="" />

@@ -52,7 +52,7 @@ const Postcomponent = ({
         <h1 class="my-4 display-4 text-center text-capitalize">{post.title}</h1>
         {post.photo && (
           <img
-            src={`http://localhost:8000/api/posts/photo/${
+            src={`/api/posts/photo/${
               post._id && post._id
             }`}
             alt=""

@@ -30,7 +30,7 @@ export const loadUser = () => async (dispatch) => {
   const { data } = isAuthenticated();
   try {
     const res = await axios.get(
-      `http://localhost:8000/api/users/read/${data.user._id}`
+      `/api/users/read/${data.user._id}`
     );
     dispatch({
       type: USER_LOADED,
@@ -53,7 +53,7 @@ export const Registeruser = (formData) => async (dispatch) => {
   const body = JSON.stringify(formData);
   try {
     const res = await axios.post(
-      "http://localhost:8000/api/register",
+      "/api/register",
       body,
       config
     );
@@ -78,7 +78,7 @@ export const signin = (formData) => async (dispatch) => {
   const body = JSON.stringify(formData);
   try {
     const res = await axios.post(
-      "http://localhost:8000/api/login",
+      "/api/login",
       body,
       config
     );
@@ -99,7 +99,7 @@ export const signin = (formData) => async (dispatch) => {
 
 export const signout = () => async (dispatch) => {
   try {
-    await axios.get("http://localhost:8000/api/signout");
+    await axios.get("/api/signout");
     dispatch({
       type: LOGOUT,
     });

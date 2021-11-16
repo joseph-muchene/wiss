@@ -24,7 +24,7 @@ export const createpost = (formdata) => async (dispatch) => {
   const body = formdata;
   try {
     let res = await axios.post(
-      `http://localhost:8000/api/create/new/post/${data.user._id}`,
+      `/api/create/new/post/${data.user._id}`,
       body,
       config
     );
@@ -50,7 +50,7 @@ export const updatePost = (formdata, id) => async (dispatch) => {
 
   try {
     let res = await axios.put(
-      `http://localhost:8000/api/update/post/${id}`,
+      `/api/update/post/${id}`,
       body,
       config
     );
@@ -76,7 +76,7 @@ export const postByUser = (id) => async (dispatch) => {
   };
   try {
     const res = await axios.get(
-      `http://localhost:8000/api/posts/by/${!id ? data.user._id : id}`,
+      `/api/posts/by/${!id ? data.user._id : id}`,
       config
     );
     dispatch({
@@ -98,7 +98,7 @@ export const postfeed = () => async (dispatch) => {
   };
   try {
     const res = await axios.get(
-      `http://localhost:8000/api/posts/feed/${data.user._id}`,
+      `/api/posts/feed/${data.user._id}`,
       config
     );
     dispatch({
@@ -116,7 +116,7 @@ export const postfeed = () => async (dispatch) => {
 export const getAllposts = (pageNumber) => async (dispatch) => {
   try {
     const res = await axios.get(
-      `http://localhost:8000/api/posts?page=${pageNumber}`
+      `/api/posts?page=${pageNumber}`
     );
     dispatch({
       type: GET_POSTS,
@@ -131,7 +131,7 @@ export const getAllposts = (pageNumber) => async (dispatch) => {
 };
 export const getPost = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`http://localhost:8000/api/post/${id}`);
+    const res = await axios.get(`/api/post/${id}`);
     dispatch({
       type: GET_POST,
       payload: res.data,
@@ -154,7 +154,7 @@ export const updateLikes = (FormData) => async (dispatch) => {
   const body = JSON.stringify(FormData);
   try {
     const res = await axios.put(
-      `http://localhost:8000/api/posts/like/${data.user._id}`,
+      `/api/posts/like/${data.user._id}`,
       body,
       config
     );
@@ -180,7 +180,7 @@ export const removelike = (FormData) => async (dispatch) => {
   const body = JSON.stringify(FormData);
   try {
     const res = await axios.put(
-      `http://localhost:8000/api/posts/unlike/${data.user._id}`,
+      `/api/posts/unlike/${data.user._id}`,
       body,
       config
     );
@@ -208,7 +208,7 @@ export const Addcomment = (FormData) => async (dispatch) => {
   const body = JSON.stringify(FormData);
   try {
     const res = await axios.put(
-      `http://localhost:8000/api/posts/comment/${data.user._id}`,
+      `/api/posts/comment/${data.user._id}`,
       body,
       config
     );
@@ -232,7 +232,7 @@ export const removeComment = (formData) => async (dispatch) => {
   const body = JSON.stringify(formData);
   try {
     const res = await axios.put(
-      `http://localhost:8000/api/posts/uncomment/${data.user._id}`,
+      `/api/posts/uncomment/${data.user._id}`,
       body,
       config
     );
@@ -252,7 +252,7 @@ export const removeComment = (formData) => async (dispatch) => {
 
 export const removePost = (id) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:8000/api/remove/post/${id}`);
+    await axios.delete(`/api/remove/post/${id}`);
     dispatch({
       type: REMOVE_POST,
       payload: id,

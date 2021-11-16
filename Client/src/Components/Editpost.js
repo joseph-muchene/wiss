@@ -65,7 +65,7 @@ const Add__Post = ({ updatePost, match, getPost, post, error }) => {
       <form onSubmit={onSubmit}>
         <h4>Post Photo</h4>
         <img
-          src={`http://localhost:8000/api/posts/photo/${post._id}`}
+          src={`/api/posts/photo/${post._id}`}
           alt=""
           srcset=""
           className="img-fluid img__card mb-4"
