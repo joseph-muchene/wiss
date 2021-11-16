@@ -47,7 +47,7 @@ export const updatePost = (formdata, id) => async (dispatch) => {
     },
   };
   const body = formdata;
- 
+
   try {
     let res = await axios.put(
       `http://localhost:8000/api/update/post/${id}`,

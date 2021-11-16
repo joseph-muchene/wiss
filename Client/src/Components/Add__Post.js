@@ -46,9 +46,9 @@ const Add__Post = ({ createpost, error, loading }) => {
     </div>
   );
 
-  if (success) {
-    return <Redirect to="/" />;
-  }
+  // if (success) {
+  //   return <Redirect to="/" />;
+  // }
   return (
     <div className="container">
       {error && showErrors()}
